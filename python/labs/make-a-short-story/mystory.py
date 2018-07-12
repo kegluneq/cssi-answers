@@ -20,3 +20,11 @@ print ("At CSSI we were all " + adjective1 + " when a " + noun1 +
     " fell through the ceiling. See-Mong tried to " + verb1 + " it but it " +
     "was too " + adjective2 + ". Instead, Zack gave it a " + noun2 + " which " +
     "caused it to " + verb2 + ".")
+
+
+# Here's a more advanced way to put a string together.
+# Try searching Google (or Bing!) for "Python String Formating" or look at
+# http://pyformat.info
+print ("At CSSI we were all %s when a %s fell through the ceiling. See-Mong " +
+    "tried to %s it but it was too %s. Instead, Zack gave it a %s which " +
+    "caused it to %s.") % (adjective1, noun1, verb1, adjective2, noun2, verb2)
