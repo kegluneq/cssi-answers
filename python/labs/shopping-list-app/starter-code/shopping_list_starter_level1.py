@@ -22,17 +22,18 @@ shopping_list = []
 
 # Add an item to the list
 def add_item():
-  # Notice that I trim the input after receiving it.
+  # Notice that I strip the input after receiving it.
   # This means that "blueberries" and "  blueberries " are the same.
-  new_item = raw_input("What item should I add? ").trim()
+  new_item = raw_input("What item should I add? ").strip()
   shopping_list.append(new_item)
   print("Added %s to your shopping list" % new_item)
 
 # Remove an item from the list
 def remove_item():
-  item = raw_input("What item should I remove? ").trim()
+  item = raw_input("What item should I remove? ").strip()
   # Level 1: assume the item is in the list
   shopping_list.remove(item)
+  print("Removed %s from your shopping list" % item)
 
 # Check that an item is in the list
 def check_item():
@@ -54,7 +55,7 @@ while choice.lower() != "e":
   print("d. Show all items on the list")
   print("e. exit")
 
-  choice = raw_input("Enter your choice [a|b|c|d|e]: ").trim()
+  choice = raw_input("Enter your choice [a|b|c|d|e]: ").strip()
 
   if choice == "a":
     add_item()
