@@ -1,0 +1,38 @@
+<html>
+ <head><title>Jeopardy</title></head>
+ <body>
+   {% if user %}
+   <p>Welcome {{user.nickname}} | <a href="{{log_url}}">Sign Out</a><br/>
+      You are at {{user.page_view_count}} page views.<br/>
+      <a href="/favorites">View your favorite questions.</a></p>
+   {% else %}
+   <p>Welcome Guest! Please <a href="{{log_url}}">Sign In</a></p>
+   {% endif %}
+
+   {% if error %}
+     <p><b>{{error}}</b></p>
+   {% endif %}
+
+   <ul>
+     <li>Category: {{clue['category']['title']}}</li>
+     <li>Value: {{clue['value']}}</li>
+     <li>Question: {{clue['question']}}</li>
+     <li><a href="#" id="button">Show Answer</a></li>
+   </ul>
+
+   <div id="answer" style="display: none;">
+     <h2>Answer: {{clue['answer']}}</h2>
+
+     <p><a href="/favorite?id={{clue['id']}}&cat={{clue['category']['id']}}">add favorite</a></p>
+   </div>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script>
+  	$(document).ready(function(){
+      $("#button").click(function(){
+          $("#answer").show();
+      });
+  	});
+   	</script>
+ </body>
+</html>

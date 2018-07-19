@@ -1,0 +1,27 @@
+<html>
+ <head><title>Jeopardy</title></head>
+ <body>
+   <p>Welcome {{user.nickname}} | <a href="{{log_url}}">Sign Out</a><br/>
+      You are at {{user.page_view_count}} page views.<br/>
+      <a href="/">Go Home</a></p>
+
+   <h2>Your favorite questions</h2>
+   {% if favorites|length == 0 %}
+     <p><b>You don't have any favorite questions yet</b></p>
+   {% else %}
+     <ul>
+       {% for clue in favorites %}
+         <li>Question: {{clue['question']}}
+           (<a href="/remove?id={{clue['id']}}">remove</a>)
+           <ul>
+            <li>Answer: {{clue['answer']}}</li>
+            <li>Category: {{clue['category']['title']}}</li>
+            <li>Value: {{clue['value']}}</li>
+            <li>Favorite of <b>{{clue['count']}}</b> users</li>
+           </ul>
+         </li>
+       {% endfor %}
+     </ul>
+   {% endif %}
+ </body>
+</html>
