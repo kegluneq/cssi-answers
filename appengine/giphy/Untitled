@@ -1,0 +1,15 @@
+
+1) Create the UserSearch Model object
+
+2) On searches, do this
+
+   1) Check to see if UserSearch object exists
+   2) If not, create it
+   3) Increment count
+   4) Save/Put
+
+   ** As an example - look at find_or_create_user()
+      in the jservice example **
+
+BONUS - Don't count your default search term unless
+        the user actually types it in.
