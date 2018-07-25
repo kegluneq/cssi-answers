@@ -14,9 +14,12 @@
       Your user id is {{ user_id }}
     </p>
     <p>
+      <!-- This is the way you tell the browser you have a string you want
+           to show as an image. -->
       Your photo: <img src="data:image/jpg;base64,{{img}}">
     </p>
     Upload a photo:
+    <!-- You must set these attributes for the image upload to work -->
     <form method="post" enctype="multipart/form-data">
       <input type="file" name="myfile"/>
       <button>Submit</button>
