@@ -1,12 +1,18 @@
 import webapp2
 import os
 import jinja2
-# You need base64 to send the image to HTML as a string the browser can
-# understand
-import base64
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from models import Visitor
+
+# You need base64 to send the image to HTML as a string the browser can
+# understand
+import base64
+
+# This is only necessary if you want to resize images on the server.
+# To use this, you'll need to run this on the command line:
+# pip install image
+from google.appengine.api import images
 
 #remember, you can get this by searching for jinja2 google app engine
 jinja_current_dir = jinja2.Environment(
@@ -72,10 +78,17 @@ class MyHandler(webapp2.RequestHandler):
         my_visitor = get_visitor()
         if my_visitor:
             img = self.request.get("myfile")
-            my_visitor.image = img
+            my_visitor.image = resize_image(img)
             my_visitor.put()
 
         self.redirect('/')
+
+# To make this work, you will need to import `images` above
+# and install the python images library (`pip install images`)
+def resize_image(base_img):
+    img = images.Image(base_img)
+    img.resize(width=100)
+    return img.execute_transforms(output_encoding=images.JPEG)
 
 
 app = webapp2.WSGIApplication([
