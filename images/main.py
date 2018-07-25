@@ -27,7 +27,7 @@ def get_visitor():
     my_key = get_key(me)
     return my_key.get()
 
-class SigninHandler(webapp2.RequestHandler):
+class MyHandler(webapp2.RequestHandler):
     def get(self):
         me = users.get_current_user()
         if not me:
@@ -41,13 +41,16 @@ class SigninHandler(webapp2.RequestHandler):
             # A user is logged in
             my_visitor = get_visitor()
             if not my_visitor:
+                # If we don't have an entry in DataStore for this user, add one.
                 my_visitor = Visitor(
                     key = get_key(me),
                     id = me.user_id(),
                     name = me.nickname(),
                     email = me.email(),
                 )
-            my_visitor.put()
+                # We only save if we're creating a new one because we don't
+                # modify existing Visitor objects.
+                my_visitor.put()
 
             withuser_template = jinja_current_dir.get_template("templates/withuser.html")
             jinja_values = {
@@ -76,5 +79,5 @@ class SigninHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', SigninHandler),
+    ('/', MyHandler),
 ], debug=True)
