@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Logged In</title>
+  </head>
+  <body>
+    <a href="{{ signout_page_url }}">Sign Out</a>
+    <h1>Hello, {{ name }}!</h1>
+    <p>
+      Your email address is {{ email_addr }}
+    </p>
+    <p>
+      Your user id is {{ user_id }}
+    </p>
+    <p>
+      Your photo: <img src="data:image/jpg;base64,{{img}}">
+    </p>
+    Upload a photo:
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="myfile"/>
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
